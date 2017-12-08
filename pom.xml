@@ -15,6 +15,7 @@
         <module>general</module>
         <module>common</module>
         <module>mycraft</module>
+        <module>speaker</module>
     </modules>
 
     <dependencyManagement>
