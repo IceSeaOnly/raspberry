@@ -35,7 +35,7 @@
     </dependencies>
 
     <build>
-        <finalName>soldiers</finalName>
+        <finalName>speaker</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
