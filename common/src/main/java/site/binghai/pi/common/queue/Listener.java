@@ -35,8 +35,8 @@ public abstract class Listener extends Thread implements QueueBase{
                 Message popMsg = queue.popMessage(10);
                 if (popMsg != null) {
 //                    System.out.println("新消息:" + popMsg.getMessageBody());
-                    consume(popMsg.getMessageBody());
                     queue.deleteMessage(popMsg.getReceiptHandle());
+                    consume(popMsg.getMessageBody());
                 }
             } catch (Exception e) {
                 handleException(e);
