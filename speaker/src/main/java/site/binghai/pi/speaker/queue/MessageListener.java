@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import javazoom.jl.decoder.JavaLayerException;
 import site.binghai.pi.common.configs.SpeakOption;
 import site.binghai.pi.common.queue.Listener;
+import site.binghai.pi.common.utils.TimeFormat;
 import site.binghai.pi.speaker.sound.Mp3Player;
 import site.binghai.pi.speaker.sound.SpeakerProxy;
 
@@ -28,6 +29,8 @@ public class MessageListener extends Listener {
 
     @Override
     protected String consume(String msg) {
+        System.out.println(TimeFormat.format(System.currentTimeMillis()) + " : " + msg);
+
         SpeakOption option = JSONObject.parseObject(msg, SpeakOption.class);
         switch (option.getSpeakType()) {
             case SPEAK_DIRECT:

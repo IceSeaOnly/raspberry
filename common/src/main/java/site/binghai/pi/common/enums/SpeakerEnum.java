@@ -7,8 +7,8 @@ package site.binghai.pi.common.enums;
 public enum SpeakerEnum {
     WOMAN(0),
     MAN(1),
-    EMOTIONAL_WOMAN(2),
-    EMOTIONAL_MAN(3),
+    EMOTIONAL_WOMAN(3),
+    EMOTIONAL_MAN(4),
     ;
 
     private int id;
