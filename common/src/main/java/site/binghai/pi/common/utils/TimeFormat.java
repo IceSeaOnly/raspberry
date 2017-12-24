@@ -14,8 +14,14 @@ public class TimeFormat {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return df.format(date);
     }
+
     public static String format(Long date){
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return df.format(date);
+    }
+
+    public static String onlyTime(Long date){
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
         return df.format(date);
     }
 

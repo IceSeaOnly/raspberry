@@ -22,6 +22,11 @@ public class SpeakService {
         return message.getReceiptHandle() != null;
     }
 
+    public boolean speak(String content) {
+        Message message = speakSender.publish(content);
+        return message.getReceiptHandle() != null;
+    }
+
     private class SpeakSender extends Sender {
         @Override
         public String getQueueName() {

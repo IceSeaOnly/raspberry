@@ -9,7 +9,10 @@ import site.binghai.pi.common.queue.Sender;
  */
 public class CmdPoster extends Sender{
 
+//    public String getQueueName() {
+//        return "pi-general";
+//    }
     public String getQueueName() {
-        return "pi-general";
+        return "pi-speaker";
     }
 }
