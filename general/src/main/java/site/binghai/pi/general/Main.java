@@ -3,6 +3,7 @@ package site.binghai.pi.general;
 import com.alibaba.fastjson.JSONObject;
 import site.binghai.pi.common.service.SpeakService;
 import site.binghai.pi.common.utils.HttpUtils;
+import site.binghai.pi.common.utils.MailUtil;
 import site.binghai.pi.common.utils.TimeFormat;
 
 import java.text.NumberFormat;
@@ -18,22 +19,26 @@ public class Main {
     private static int sleepTime = 20000;
     private static int MAX = 14888;
     private static int MIN = 11000;
+    private static boolean MAIL = false;
 
 
     public static void main(String[] args) {
         System.out.println("args:" + args.length);
-        for (String arg : args){
-            if(arg.startsWith("-D")){
+        for (String arg : args) {
+            if (arg.startsWith("-D")) {
                 detailOpen = true;
             }
-            if(arg.startsWith("-S")){
-                sleepTime = Integer.parseInt(arg.substring(2,arg.length()));
+            if (arg.startsWith("-S")) {
+                sleepTime = Integer.parseInt(arg.substring(2, arg.length()));
             }
-            if(arg.startsWith("-MIN")){
-                MIN = Integer.parseInt(arg.substring(4,arg.length()));
+            if (arg.startsWith("-MIN")) {
+                MIN = Integer.parseInt(arg.substring(4, arg.length()));
             }
-            if(arg.startsWith("-MAX")){
-                MAX = Integer.parseInt(arg.substring(4,arg.length()));
+            if (arg.startsWith("-MAX")) {
+                MAX = Integer.parseInt(arg.substring(4, arg.length()));
+            }
+            if (arg.startsWith("-MAIL")) {
+                MAIL = true;
             }
         }
         new Thread() {
@@ -99,7 +104,7 @@ public class Main {
             if (avg.length() > 5) {
                 avg = avg.substring(0, 5);
             }
-            if (min > MIN  && avgd < MAX) {
+            if (min > MIN && avgd < MAX) {
                 sb.append(avg);
                 sb.append("美元!");
                 System.out.println(sb.toString());
@@ -118,6 +123,10 @@ public class Main {
             sb.append("美元!");
 
             System.out.println(sb.toString());
+
+            if (MAIL) {
+                MailUtil.mail("BTC" + sb.toString().substring(0, 2) + "通知", sb.toString());
+            }
             return sb.toString();
         }
         return null;
