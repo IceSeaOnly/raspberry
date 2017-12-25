@@ -14,8 +14,28 @@ import java.text.NumberFormat;
  */
 public class Main {
     private static double lastPrice = 1.0;
+    private static boolean detailOpen = false;
+    private static int sleepTime = 20000;
+    private static int MAX = 14888;
+    private static int MIN = 11000;
+
 
     public static void main(String[] args) {
+        System.out.println("args:" + args.length);
+        for (String arg : args){
+            if(arg.startsWith("-D")){
+                detailOpen = true;
+            }
+            if(arg.startsWith("-S")){
+                sleepTime = Integer.parseInt(arg.substring(2,arg.length()));
+            }
+            if(arg.startsWith("-MIN")){
+                MIN = Integer.parseInt(arg.substring(4,arg.length()));
+            }
+            if(arg.startsWith("-MAX")){
+                MAX = Integer.parseInt(arg.substring(4,arg.length()));
+            }
+        }
         new Thread() {
             @Override
             public void run() {
@@ -24,12 +44,11 @@ public class Main {
                     try {
                         String text = work();
                         if (text != null) {
-                            System.out.println(text);
                             speakService.speak(text);
                         } else {
-                            speakService.speak("火币网服务器崩溃!");
+//                            speakService.speak("火币网服务器崩溃!");
                         }
-                        sleep(20000);
+                        sleep(sleepTime);
                     } catch (Exception e) {
                     }
 
@@ -80,10 +99,11 @@ public class Main {
             if (avg.length() > 5) {
                 avg = avg.substring(0, 5);
             }
-            if (min >= 11000) {
+            if (min >= MAX && avgd < MIN) {
                 sb.append(avg);
                 sb.append("美元!");
-                return sb.toString();
+                System.out.println(sb.toString());
+                return detailOpen ? sb.toString() : null;
             }
 
             sb.append(avg);
@@ -97,6 +117,7 @@ public class Main {
             sb.append(avg);
             sb.append("美元!");
 
+            System.out.println(sb.toString());
             return sb.toString();
         }
         return null;
