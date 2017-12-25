@@ -36,6 +36,7 @@
                             <mainClass>site.binghai.pi.general.Main</mainClass>
                         </manifest>
                     </archive>
+                    <encoding>utf-8</encoding>
                 </configuration>
                 <executions>
                     <execution>
