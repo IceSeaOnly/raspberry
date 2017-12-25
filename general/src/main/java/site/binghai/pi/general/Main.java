@@ -99,7 +99,7 @@ public class Main {
             if (avg.length() > 5) {
                 avg = avg.substring(0, 5);
             }
-            if (min >= MAX && avgd < MIN) {
+            if (min > MIN  && avgd < MAX) {
                 sb.append(avg);
                 sb.append("美元!");
                 System.out.println(sb.toString());
