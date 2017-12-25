@@ -10,7 +10,8 @@ import java.io.IOException;
 public class MailUtil {
     public static void mail(String title, String content) {
         try {
-            Runtime.getRuntime().exec(String.format("/home/pi/mailer.sh '%s' '%s'", title, content));
+            content = content.replace(" ", "_");
+            Runtime.getRuntime().exec(String.format("/home/pi/mailer.sh %s %s", title, content));
         } catch (IOException e) {
             e.printStackTrace();
         }
