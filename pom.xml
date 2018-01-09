@@ -16,6 +16,7 @@
         <module>common</module>
         <module>mycraft</module>
         <module>speaker</module>
+        <module>cron</module>
     </modules>
 
     <dependencyManagement>
